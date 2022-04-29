@@ -1,3 +1,7 @@
+#ifndef RTW_HEADER_rtGetInf_h_
+#define RTW_HEADER_rtGetInf_h_
+
+
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -99,3 +103,5 @@ class DP_Reader
 //std::vector<std::vector<float>> DP_Reader::Order_int(std::vector<std::vector<std::string> > spat_string);
 //
 //std::map<int,std::map<int,int>> DP_Reader::Get_platoons(std::vector<car> veh_vector);
+
+#endif

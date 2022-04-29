@@ -1,14 +1,17 @@
+#ifndef DP_SOLVER_H
+#define DP_SOLVER_H
+
+
+
 #include <iostream>
 //#include "ilcplex\cplex.h"
 //#include "ilcplex\ilocplex.h"
 #include "/opt/ibm/ILOG/CPLEX_Studio221/cplex/include/ilcplex/cplex.h"
 
 #include "/opt/ibm/ILOG/CPLEX_Studio221/cplex/include/ilcplex/ilocplex.h"
-#include "/opt/ibm/ILOG/CPLEX_Studio221/concert/include/ilconcert/ilomodel.h"
-#include "/opt/ibm/ILOG/CPLEX_Studio221/concert/include/ilconcert/iloenv.h"
 #include <cmath>
 #include <limits>
-//#include "dp_getdata.h"
+#include "dp_getdata.h"
 
 
 class DP_Solver
@@ -18,10 +21,14 @@ class DP_Solver
         //Parameters 
         
         //Model objects
-        IloEnv env;
-        IloModel model(env);
+        //IloEnv env;
+        IloModel model;
         DP_Reader reader;
-        
+       
+        //DP_Solver(IloEnv env)
+        //{
+        //    model = new IloModel(env);
+        //};
         
         //Functions 
         void WriteModel(DP_Reader reader_);
@@ -29,3 +36,6 @@ class DP_Solver
         DP_Solver(DP_Reader reader);
 
 };
+
+
+#endif
