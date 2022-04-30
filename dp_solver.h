@@ -2,7 +2,7 @@
 #define DP_SOLVER_H
 
 
-
+#pragma once
 #include <iostream>
 //#include "ilcplex\cplex.h"
 //#include "ilcplex\ilocplex.h"
@@ -21,10 +21,8 @@ class DP_Solver
         //Parameters 
         
         //Model objects
-        //IloEnv env;
+        IloEnv env;
         IloModel model;
-        DP_Reader reader;
-       
         //DP_Solver(IloEnv env)
         //{
         //    model = new IloModel(env);
@@ -33,7 +31,7 @@ class DP_Solver
         //Functions 
         void WriteModel(DP_Reader reader_);
         void SolveModel();
-        DP_Solver(DP_Reader reader);
+        DP_Solver(DP_Reader reader_);
 
 };
 

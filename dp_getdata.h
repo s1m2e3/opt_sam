@@ -1,7 +1,7 @@
-#ifndef RTW_HEADER_rtGetInf_h_
-#define RTW_HEADER_rtGetInf_h_
+#ifndef dp_getdata
+#define dp_getdata
 
-
+#pragma once
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,7 +11,7 @@
 #include <map>
 #include <sstream>
 
-class car
+class Car
 {
     public:
 
@@ -21,7 +21,7 @@ class car
         float lon;
         float speed;
         float heading;
-        int intersection;
+        int Intersection;
         int phase;
         int platoon;
         int lane;
@@ -29,79 +29,46 @@ class car
         double time_between_vehicles;
         int inbound;
 
-    car(int id_, float time_,float lat_,float lon_,float speed_, float heading_, int intersection_, int phase_,int lane_,int platoon_, double time_to_arrival_,double time_between_vehicles_ ,int inbound_)
-    {
-        id=id_;
-        time=time_;
-        lat = lat_;
-        lon = lon_;
-        speed = speed_;
-        heading= heading_;
-        intersection = intersection_;
-        phase = phase_;
-        platoon = platoon_;
-        time_to_arrival=time_to_arrival_;
-        lane = lane_;
-        inbound = inbound_;
-        time_between_vehicles=time_between_vehicles_;
-    }
+    Car(int id_, float time_,float lat_,float lon_,float speed_, float heading_, int Intersection_, int phase_,int lane_,int platoon_, double time_to_arrival_,double time_between_vehicles_ ,int inbound_);
+    
 };
 
-class intersection
+class Intersection
 {
+    struct phase{
+    int state;
+    double p_minendtime;
+    double p_maxendtime;
+    double p_elapsedtime;
+    };
+    
+    
     public:
-            
-
-        struct phase
-        {
-            int state;
-            double p_minendtime;
-            double p_maxendtime;
-            double p_elapsedtime;
-        };
+    
         int id;
         double time;
-        phase p1;
-        phase p2;
-        phase p3;
-        phase p4;
-        phase p5;
-        phase p6;
-        phase p7;
-        phase p8;
         
-    intersection(int id_,double time_)
-    {
-        id=id_;
-        time=time_;
-            
-    };
+        phase p1,p2,p3,p4,p5,p6,p7,p8;
+        
+        
+    Intersection(int id_,double time_);
+    
 };
-
-
 
 class DP_Reader
 {
     public:
-
-    std::vector<car > veh_vector;
-    std::vector<intersection> spat_vector;
-    std::map<int,std::map<int,int>> pla_vector;
-    std::vector<std::vector<std::string> > Read_csv(std::string filename);
-    std::vector<car> Order_veh(std::vector<std::vector<std::string> > veh_string);
-    std::vector<intersection> Order_int(std::vector<std::vector<std::string> > spat_string);
-    std::map<int,std::map<int,int>> Get_platoons(std::vector<car> veh_vector);
+        std::vector<Car > veh_vector;
+        std::vector<Intersection> spat_vector;
+        std::map<int,std::map<int,int>> pla_vector;
+    
+    std::vector<std::vector<std::string> > Read_csv(std::string filename_);
+    std::vector<Car> Order_veh(std::vector<std::vector<std::string> > veh_string_);
+    std::vector<Intersection> Order_int(std::vector<std::vector<std::string> > spat_string_);
+    std::map<int,std::map<int,int>> Get_platoons(std::vector<Car> veh_vector_);
 
     DP_Reader(std::string filename_vehicles ,std::string filename_spat);
     
 };
-
-//std::vector<std::vector<std::string> > DP_Reader::Read_csv(std::string filename);
-//
-//std::vector<car> DP_Reader::Order_veh(std::vector<std::vector<std::string> > veh_string);
-//
-//std::vector<std::vector<float>> DP_Reader::Order_int(std::vector<std::vector<std::string> > spat_string);
-//
-//std::map<int,std::map<int,int>> DP_Reader::Get_platoons(std::vector<car> veh_vector);
 
 #endif

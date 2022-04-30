@@ -1,0 +1,6 @@
+In file included from dp_solver.h:14,
+                 from main.cpp:2:
+dp_getdata.h:58:7: error: redefinition of ‘class DP_Reader’
+   58 | class DP_Reader
+      |       ^~~~~~~~~
+dp_getdata.h:79:7: note: previous definition of ‘class DP_Reader’
